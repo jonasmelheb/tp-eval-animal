@@ -1,12 +1,11 @@
 package fr.diginamic.entities;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "fish")
 public class Fish extends Animal{
+    @Enumerated(EnumType.STRING)
     private FishLivEnv livingEnv;
 
     public Fish() {

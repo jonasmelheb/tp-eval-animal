@@ -12,6 +12,7 @@ public class Product {
     private Long id;
     private String code;
     private String label;
+    @Enumerated(EnumType.STRING)
     private ProdType type;
     private Double price;
 
