@@ -28,13 +28,7 @@ public class TestTp {
         Product product = new Product("hsdhsd", "label", ProdType.valueOf("FOOD"), 21.00);
         product.setType(ProdType.valueOf("FOOD"));
         product.addPetStore(petStore);
-        Set<Product> products = petStore.getProducts();
-        petStore.setProducts(products);
-        em.persist(product);
         petStore.addProduct(product);
-        Set<PetStore> petStores = product.getPetStores();
-        product.setPetStores(petStores);
-        em.persist(petStore);
 
         //New animal
         //new cat
@@ -49,8 +43,11 @@ public class TestTp {
         fish.setColor("red");
         fish.setLivingEnv(FishLivEnv.FRESH_WATER);
         fish.setPetStore(petStore);
-        em.persist(cat);
-        em.persist(fish);
+
+        petStore.addAnimal(cat);
+        petStore.addAnimal(fish);
+
+        em.persist(petStore);
         transaction.commit();
         em.close();
         emf.close();

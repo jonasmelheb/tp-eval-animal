@@ -84,17 +84,18 @@ public class Product {
     }
 
     public void setPetStores(Set<PetStore> petStores) {
-        if (petStores != null) {
+        if (petStores == null) {
             return;
         }
         this.petStores = petStores;
     }
 
     public void addPetStore(PetStore petStores) {
-        if (petStores != null) {
+        if (petStores == null) {
             return;
         }
-        petStores.addProduct(this);
+        petStores.getProducts().add(this);
+        this.petStores.add(petStores);
     }
 
     @Override

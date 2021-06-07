@@ -57,7 +57,15 @@ public class Animal {
     }
 
     public void setPetStore(PetStore petStore) {
+        if (this.petStore != null) {
+            this.petStore.getAnimals().remove(this);
+        }
+
         this.petStore = petStore;
+
+        if (petStore != null) {
+            petStore.getAnimals().add(this);
+        }
     }
 
     @Override

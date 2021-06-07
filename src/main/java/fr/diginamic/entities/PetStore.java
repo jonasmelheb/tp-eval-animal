@@ -17,7 +17,7 @@ public class PetStore {
     @OneToOne
     private Address address;
 
-    @OneToMany(mappedBy = "petStore")
+    @OneToMany(mappedBy = "petStore", cascade = CascadeType.PERSIST)
     private Set<Animal> animals;
 
     @ManyToMany(cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
@@ -29,6 +29,7 @@ public class PetStore {
 
     {
         products = new HashSet<>();
+        animals = new HashSet<>();
     }
 
     public PetStore() {
@@ -85,17 +86,24 @@ public class PetStore {
     }
 
     public void setProducts(Set<Product> products) {
-        if (products != null) {
+        if (products == null) {
             return;
         }
         this.products = products;
     }
 
     public void addProduct(Product product) {
-        if (product != null) {
+        if (product == null) {
             return;
         }
         product.addPetStore(this);
+    }
+
+    public void addAnimal(Animal animal) {
+        if (animal == null) {
+            return;
+        }
+        animal.setPetStore(this);
     }
 
     @Override
